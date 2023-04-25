@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "fastapi-todo-app"
+version = "0.1.0"
+description = ""
+authors = ["piyota0901 <piyo.tatsu.0901@gmail.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_todo_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.95.1"}
+uuid = "^1.30"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+mypy = "^1.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

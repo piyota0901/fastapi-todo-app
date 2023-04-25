@@ -1,0 +1,39 @@
+{
+    "python.envFile": "${workspaceFolder}/.venv",
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,  // pylint は使わない
+    "python.linting.pycodestyleEnabled": false, // pycodestyleは使わない
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        // エラーコード
+        // https://pep8.readthedocs.io/en/latest/intro.html#error-codes
+        "--max-line-length=110",
+        "--ignore=E111, E114, E402, E501"
+    ],
+    "python.linting.lintOnSave": true,
+    "python.linting.mypyEnabled": true,
+    "python.languageServer": "Pylance",
+    // 型アノテーション設定
+    // basic: 型アノテーションがある部分が合っているか検出
+    // strict: 型アノテーションがない場合も検出
+    "python.analysis.typeCheckingMode": "strict", 
+    // PEP8 エラーコードチェックシート
+    // https://qiita.com/KuruwiC/items/8e12704e338e532eb34a
+    "python.formatting.blackArgs": [
+        "--line-length=110"
+    ],
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    // pytest設定
+    "python.testing.pytestArgs": [
+        "test"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

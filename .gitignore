@@ -1,0 +1,5 @@
+tests/
+.venv/
+.mypy_cache
+.python-version
+.poetry.lock
