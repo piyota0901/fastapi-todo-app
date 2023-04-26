@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["piyota0901 <piyo.tatsu.0901@gmail.com>"]
 readme = "README.md"
-packages = [{include = "fastapi_todo_app"}]
+packages = [{include = "todo_app"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
