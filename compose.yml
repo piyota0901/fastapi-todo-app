@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:15-bullseye
+    container_name: postgresql15
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/postgres/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./volumes/postgres/config/my-postgres.conf:/etc/postgresql/postgresql.conf
+    # https://hub.docker.com/_/postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: -c 'config_file=/etc/postgresql/postgresql.conf'

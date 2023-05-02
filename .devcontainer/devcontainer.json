@@ -4,6 +4,7 @@
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:0-3.10",
+	"runArgs": [ "--name", "vsc-fastapi-todo-devcontainer"],
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/black:2": {},
 		"ghcr.io/devcontainers-contrib/features/flake8:2": {},
@@ -40,6 +41,9 @@
 	],
 	"workspaceFolder": "/workspace",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"mounts": [
+		"source=${localEnv:HOME}/.config/pypoetry/config.toml,target=/root/.config/pypoetry/config,type=bind,consistency=cached"
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "/bin/bash /workspace/.devcontainer/init.sh",
 	// Configure tool-specific properties.

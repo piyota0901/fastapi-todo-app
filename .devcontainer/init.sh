@@ -38,6 +38,6 @@ sudo su - postgres <<EOF
 EOF
 
 echo "-------------------------"
-echo "Initial setting done."
+echo "Finish!!!!"
 echo "-------------------------"
 
