@@ -1,8 +1,8 @@
 from pydantic import UUID4
 from sqlalchemy.orm import Session
 
-from app.models.todo import Todo
-from app.schemas import todo
+from backend.models.todo import Todo
+from backend.schemas import todo
 
 
 def fetch_all(db: Session):
@@ -20,3 +20,9 @@ def add(db: Session, new_todo: todo.TodoCreate):
     db.refresh(create_todo)
     return create_todo
 
+
+def delete_by_id(db: Session, todo_id: UUID4):
+    todo = db.query(Todo).filter(Todo.id == todo_id)
+    todo.delete()
+    db.commit()
+    return

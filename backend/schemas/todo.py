@@ -24,4 +24,5 @@ class TodoCreate(TodoBase):
 
 class Todo(TodoBase):
     id: UUID4
+    is_done: bool
     create_at: datetime.datetime

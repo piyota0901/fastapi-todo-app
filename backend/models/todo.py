@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from sqlalchemy import Boolean, Column, DateTime, String, Text, Uuid
 
-from app.db.base_class import Base
+from backend.db.base_class import Base
 
 
 class Todo(Base):
