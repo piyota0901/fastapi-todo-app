@@ -13,7 +13,7 @@
             "justMyCode": true,
             "module": "uvicorn",
             "args": [
-                "app.main:app",
+                "backend.main:app",
                 "--reload"
             ]
         }
