@@ -74,7 +74,6 @@ const onDoneButtonClick = (id: string) => {
   todoStore.chageStatus(id)
   tmpHoverStateUpdate()
   console.log(`${id} is changed status.`)
-  console.log(todoStore.todoList.filter(todo => todo.id == id))
 }
 
 
