@@ -36,9 +36,15 @@ def create_todo(new_todo: sTodo.TodoCreate, db: Session = Depends(get_db)):
     return created_todo
 
 
-@router.delete("/todo")
-def delete_todo_by_id(todo_id: UUID4, db: Session = Depends(get_db)):
+@router.delete("/")
+def delete_todo_by_id(del_todo: sTodo.TodoDelete, db: Session = Depends(get_db)):
     try:
-        todo.delete_by_id(db=db, todo_id=todo_id)
+        todo.delete_by_id(db=db, todo_id=del_todo.id)
     except Exception:
         return {"message": "success"}
+
+
+@router.patch("/", response_model=sTodo.Todo)
+def update_todo(update_todo: sTodo.Todo, db: Session = Depends(get_db)):
+    updated_todo = todo.update(db=db, update_todo=update_todo)
+    return updated_todo
