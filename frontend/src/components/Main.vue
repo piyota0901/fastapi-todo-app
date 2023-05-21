@@ -16,6 +16,10 @@ const isActive = ref(false)
       <div class="todolist-content">
         <TodoList />
       </div>
+      <!-- Add Todo Component -->
+      <div class="add-todo-content">
+        <AddTodo />
+      </div>
       <div class="donelist-content" ghost>
         <div class="collapse">
           <h3>
@@ -45,13 +49,19 @@ const isActive = ref(false)
   margin: auto;
 }
 
+.add-todo-content {
+  width: 60%;
+  height: 100px;
+  margin: auto;
+}
+
 .donelist-content {
   width: 60%;
   margin: auto;
 }
 
 .collapse  {
-    margin-bottom: 10.5px;
+  margin-bottom: 10.5px;
 }
 
 </style>

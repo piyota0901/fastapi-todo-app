@@ -5,3 +5,8 @@ export interface Todo {
   isDone: boolean;
   createAt: string;
 }
+
+export interface NewTodo {
+  title: string;
+  comment: string;
+}
