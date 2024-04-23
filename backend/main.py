@@ -14,7 +14,8 @@ origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_methods=["*"]
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 app.include_router(todo.router)
 

@@ -1,0 +1,17 @@
+version: "3"
+
+tasks:
+  build:backend:
+    cmds:
+      - docker build . -f Dockerfile.backend -t todo-backend:latest && docker compose up -d
+    desc: Build the backend image
+
+  build:frontend:
+    cmds:
+      - cd frontend && npm run dev
+    desc: Install frontend dependencies
+
+  build:all:
+    cmds:
+      - task: build:backend
+      - task: build:frontend

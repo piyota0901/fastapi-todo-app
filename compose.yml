@@ -1,7 +1,7 @@
 services:
   backend:
-    image: fastapi:todo-app
-    container_name: fastapi-todo
+    image: todo-backend:latest
+    container_name: todo-backend
     ports:
       - 8000:8000
     volumes:
