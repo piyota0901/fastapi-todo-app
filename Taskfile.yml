@@ -1,6 +1,15 @@
 version: "3"
 
 tasks:
+  migrate:
+    cmds:
+      - cd backend && poetry run alembic upgrade head
+    desc: Run database migrations
+
+  run:backend:
+    cmds:
+      - cd backend && PYTHONPATH=../ poetry run uvicorn web.main:app --host 0.0.0.0 --port 8000 --reload
+
   build:backend:
     cmds:
       - docker build . -f Dockerfile.backend -t todo-backend:latest && docker compose up -d
@@ -15,3 +24,7 @@ tasks:
     cmds:
       - task: build:backend
       - task: build:frontend
+
+  clean:
+    cmds:
+      - find . -type d -name __pycache__ -exec rm -rf {} +

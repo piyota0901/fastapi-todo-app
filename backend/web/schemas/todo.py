@@ -17,14 +17,20 @@ class Base(BaseModel):
 
 class TodoCreate(Base):
     title: str
-    comment: str
+    description: str
 
 
 class Todo(TodoCreate):
-    id: UUID4
+    id: str
     is_done: bool = False
     create_at: datetime.datetime
+    updated_at: datetime.datetime
 
+class TodoUpdate(Base):
+    id: str
+    title: str
+    description: str
+    is_done: bool
 
 class TodoDelete(Base):
     id: UUID4
