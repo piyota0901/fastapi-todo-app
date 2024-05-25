@@ -25,6 +25,11 @@ tasks:
       - task: build:backend
       - task: build:frontend
 
+  test:backend:
+    cmds:
+      - poetry run pytest -v -s --cov=backend --cov-report=xml
+    desc: Run backend tests
+
   clean:
     cmds:
       - find . -type d -name __pycache__ -exec rm -rf {} +

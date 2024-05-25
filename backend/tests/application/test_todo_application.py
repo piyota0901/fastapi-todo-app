@@ -185,25 +185,22 @@ def test_update_todo_valid_case():
         description="description"
     )
     
-    created_todo = todo_application_service.create(new_todo=pre_register_todo)
-    
+    created_todo = todo_application_service.create(new_todo=pre_register_todo)    
+    # ----------------------
+    # Act
+    # ----------------------
     # 更新用のTODOを作成する
     update_todo = TodoUpdateSchema(
-        id=created_todo.id,
         title="title2",
         description="description2",
         is_done=True
     )
-    
-    # ----------------------
-    # Act
-    # ----------------------
-    actual = todo_application_service.update(update_todo=update_todo)
+    actual = todo_application_service.update(todo_id=created_todo.id, update_todo=update_todo)
     
     # ----------------------
     # Assert
     # ----------------------
-    assert actual.id == update_todo.id
+    assert actual.id == created_todo.id
     assert actual.title == "title2"
     assert actual.description == "description2"
     assert actual.is_done is True
@@ -221,7 +218,6 @@ def test_update_todo_when_todo_not_found():
     todo_application_service = TodoApplicationService(unit_of_work=unit_of_work)
     
     update_todo = TodoUpdateSchema(
-        id="invalid_todo_id",
         title="title2",
         description="description2",
         is_done=True
@@ -231,7 +227,7 @@ def test_update_todo_when_todo_not_found():
     # Act & Assert
     # ----------------------
     with pytest.raises(TodoNotFound):
-        todo_application_service.update(update_todo=update_todo)
+        todo_application_service.update(todo_id="invalid_id", update_todo=update_todo)
 
 
 def test_delete_todo_valid_case():

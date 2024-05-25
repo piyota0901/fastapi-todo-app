@@ -86,7 +86,7 @@ class TodoApplicationService:
             updated_at=todo_entity.updated_at
         )
     
-    def update(self, update_todo: TodoUpdateSchema) -> TodoSchema:
+    def update(self, todo_id:str, update_todo: TodoUpdateSchema) -> TodoSchema:
         """Todoを更新する
 
         Args:
@@ -104,6 +104,7 @@ class TodoApplicationService:
                             description=update_todo.description,
                             is_done=update_todo.is_done
                             )
+        todo_entity.id = todo_id
         with self.unit_of_work as uow:      
             updated_todo_entity = uow.todo_repository.update(todo=todo_entity)
         

@@ -1,8 +1,9 @@
 from datetime import datetime
 
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from backend.ddd.domain.entities.todo import Todo
+
 
 class Base(DeclarativeBase):
     """
@@ -33,6 +34,9 @@ class TodoModel(Base):
             create_at=self.create_at,
             updated_at=self.updated_at
         )
+    
+    def __repr__(self):
+        return f"TodoModel(id={self.id!r}, title={self.title!r}, description={self.description!r}, is_done={self.is_done!r}, create_at={self.create_at!r}, updated_at={self.updated_at!r})"
     
     @classmethod
     def from_entity(cls, todo: Todo) -> 'TodoModel':

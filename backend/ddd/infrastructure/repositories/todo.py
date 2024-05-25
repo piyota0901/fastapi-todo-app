@@ -47,7 +47,7 @@ class FakeTodoRepository(ITodoRepository):
         return todo
             
     def update(self, todo: TodoEntity) -> Optional[TodoEntity]:
-        todo_models = [t for t in self.todos if t.id != todo.id]
+        todo_models = [t for t in self.todos if t.id == todo.id]
         todo_model = None if len(todo_models) == 0 else todo_models[0] 
         if todo_model is None:
             return None

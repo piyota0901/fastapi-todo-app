@@ -43,11 +43,12 @@ def get_todo(
 
 @router.patch("/{todo_id}", response_model=TodoSchema.Todo)
 def update_todo(
+    todo_id: str,
     update_todo: TodoSchema.TodoUpdate,
     todo_application: TodoApplicationService = Depends(get_todo_application)
     ):
     try:
-        return todo_application.update(update_todo=update_todo)
+        return todo_application.update(todo_id=todo_id, update_todo=update_todo)
     except TodoNotFound:
         raise HTTPException(status_code=404, detail="Todo not found")
     except Exception:
