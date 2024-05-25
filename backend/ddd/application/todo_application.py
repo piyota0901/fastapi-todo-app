@@ -1,7 +1,6 @@
 
 from backend.ddd.application.exceptions import TodoNotFound
 from backend.ddd.domain.factories.todo import TodoFactory
-from backend.ddd.infrastructure.repositories.models import TodoModel
 from backend.ddd.infrastructure.repositories.transaction import IUnitOfWork
 from backend.web.schemas.todo import Todo as TodoSchema
 from backend.web.schemas.todo import TodoCreate as TodoCreateSchema
@@ -22,7 +21,11 @@ class TodoApplicationService:
         Args:
             new_todo (TodoCreate): _description_
         """
-        todo_entity = self.factory.create(title=new_todo.title, description=new_todo.description)        
+        todo_entity = self.factory.create(
+                                    title=new_todo.title, 
+                                    description=new_todo.description, 
+                                    is_done=new_todo.is_done
+                                )        
         with self.unit_of_work as uow:
             todo_entity = uow.todo_repository.add(todo=todo_entity)
         
@@ -102,18 +105,18 @@ class TodoApplicationService:
                             is_done=update_todo.is_done
                             )
         with self.unit_of_work as uow:      
-            todo_entity = uow.todo_repository.update(todo=todo_entity)
+            updated_todo_entity = uow.todo_repository.update(todo=todo_entity)
         
-        if todo_entity is None:
+        if updated_todo_entity is None:
             raise TodoNotFound
         
         return TodoSchema(
-            id=todo_entity.id,
-            title=todo_entity.title,
-            description=todo_entity.description,
-            is_done=todo_entity.is_done,
-            create_at=todo_entity.create_at,
-            updated_at=todo_entity.updated_at
+            id=updated_todo_entity.id,
+            title=updated_todo_entity.title,
+            description=updated_todo_entity.description,
+            is_done=updated_todo_entity.is_done,
+            create_at=updated_todo_entity.create_at,
+            updated_at=updated_todo_entity.updated_at
         )
     
     def delete_by_id(self, todo_id: str):

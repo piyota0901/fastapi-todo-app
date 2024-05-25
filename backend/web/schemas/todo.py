@@ -18,16 +18,20 @@ class Base(BaseModel):
 class TodoCreate(Base):
     title: str
     description: str
+    is_done: bool = False
 
 
 class Todo(TodoCreate):
     id: str
-    is_done: bool = False
     create_at: datetime.datetime
     updated_at: datetime.datetime
+    
+    def __eq__(self, other: object):
+        if not isinstance(other, Todo):
+            return NotImplemented
+        return self.id == other.id
 
 class TodoUpdate(Base):
-    id: str
     title: str
     description: str
     is_done: bool

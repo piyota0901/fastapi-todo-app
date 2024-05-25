@@ -57,6 +57,8 @@ class FakeTodoRepository(ITodoRepository):
                         title=todo.title,
                         description=todo.description,
                         is_done=todo.is_done,
+                        create_at=todo_model.create_at,
+                        updated_at=todo.updated_at
         )
         self.todos.remove(todo_model)        
         self.todos.append(new_todo_model)

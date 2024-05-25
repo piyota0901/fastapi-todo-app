@@ -18,7 +18,7 @@ class IUnitOfWork(abc.ABC):
     def __enter__(self) -> "IUnitOfWork":
         raise NotImplementedError()
     
-    def __exit__(self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]):
+    def __exit__(self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]) -> None:
         raise NotImplementedError()
 
 
